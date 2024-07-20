@@ -16,10 +16,9 @@ public class droneOperation {
     }
 
     public void failure(){
-        System.out.println("Drone has encountered a failure");
+        System.out.println("Drone failure");
     }
 
-    // Separate classes extending droneOperation for each specific operation
     public static class TakeOff extends droneOperation {
         @Override
         public void takeOff(){
@@ -48,14 +47,12 @@ public class droneOperation {
         }
     }
 
-    // Class for survey operations
     public static class Survey {
         public void surveyRoute(String path){
             System.out.println("The survey route is " + path);
         }
     }
 
-    // Class for mission planning with Dijkstra's algorithm implementation
     public static class MissionPlanning {
         final int numNodes = 100;
         final int[][] graph;
@@ -66,7 +63,6 @@ public class droneOperation {
             generateGraph();
         }
 
-        // Generates a random weighted graph
         private void generateGraph() {
             for (int i = 0; i < numNodes; i++) {
                 for (int j = i + 1; j < numNodes; j++) {
@@ -77,7 +73,6 @@ public class droneOperation {
             }
         }
 
-        // Finds the shortest path using Dijkstra's algorithm
         public String findShortest(int start, int end) {
             int[] dist = new int[numNodes];
             boolean[] visited = new boolean[numNodes];
@@ -112,7 +107,6 @@ public class droneOperation {
             return reconstructPath(start, end, prev);
         }
 
-        // Reconstructs the shortest path from the 'prev' array
         private String reconstructPath(int start, int end, int[] prev) {
             List<Integer> path = new ArrayList<>();
             for (int at = end; at != -1; at = prev[at]) {
